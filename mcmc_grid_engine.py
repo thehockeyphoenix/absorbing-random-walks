@@ -41,4 +41,7 @@ if __name__ == "__main__":
     print(f"Average Hitting Time (MCMC): {avg_steps:.4f}")
     print(f"Absorption Distribution: {abs_counts}")
 
-exact_markov_hitting_time().
+def exact_markov_hitting_time(
+    grid_size=(5,5), absorbing_states=[(0,0), (4,4)]):
+        rows, cols = grid_size
+        
