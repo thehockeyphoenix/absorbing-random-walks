@@ -46,4 +46,6 @@ def exact_markov_hitting_time(
         rows, cols = grid_size
         num_states = rows * cols
         absorbing_indices = [r * cols + c for r, c in absorbing_states]
+        transient_indices = [i for i in range(num_states) if i not in absorbing_indices]
+  n_trans = len(transient_indices)
         
