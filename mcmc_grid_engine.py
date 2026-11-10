@@ -44,4 +44,6 @@ if __name__ == "__main__":
 def exact_markov_hitting_time(
     grid_size=(5,5), absorbing_states=[(0,0), (4,4)]):
         rows, cols = grid_size
+        num_states = rows * cols
+        absorbing_indices = [r * cols + c for r, c in absorbing_states]
         
