@@ -52,3 +52,8 @@ def exact_markov_hitting_time(
   for r in range(rows):
     for c in range(cols):
       curr = r * cols + c
+if curr in absorbing_indices:
+        P[curr, curr] = 1.0
+        continue
+      neighbors = []
+      if r > 0:
