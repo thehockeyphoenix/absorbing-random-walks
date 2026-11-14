@@ -57,3 +57,8 @@ if curr in absorbing_indices:
         continue
       neighbors = []
       if r > 0:
+neighbors.append((r - 1, c))
+      if r < rows - 1:
+        neighbors.append((r + 1, c))
+      if c > 0:
+        neighbors.append((r, c - 1))
