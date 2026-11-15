@@ -62,3 +62,5 @@ neighbors.append((r - 1, c))
         neighbors.append((r + 1, c))
       if c > 0:
         neighbors.append((r, c - 1))
+      if c < cols - 1:
+        neighbors.append((r, c + 1))
