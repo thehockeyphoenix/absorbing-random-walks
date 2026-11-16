@@ -64,3 +64,6 @@ neighbors.append((r - 1, c))
         neighbors.append((r, c - 1))
       if c < cols - 1:
         neighbors.append((r, c + 1))
+prob = 1.0 / len(neighbors)
+      for nr, nc in neighbors:
+        P[curr, nr * cols + nc] = prob
