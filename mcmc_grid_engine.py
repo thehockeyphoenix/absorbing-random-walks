@@ -67,3 +67,7 @@ neighbors.append((r - 1, c))
 prob = 1.0 / len(neighbors)
       for nr, nc in neighbors:
         P[curr, nr * cols + nc] = prob
+
+Q = P[np.ix_(transient_indices, transient_indices)]
+  I = np.eye(n_trans)
+  N = np.linalg.inv(I - Q)
