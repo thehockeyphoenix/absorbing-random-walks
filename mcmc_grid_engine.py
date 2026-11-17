@@ -71,3 +71,7 @@ prob = 1.0 / len(neighbors)
 Q = P[np.ix_(transient_indices, transient_indices)]
   I = np.eye(n_trans)
   N = np.linalg.inv(I - Q)
+hitting_times = N.sum(axis=1)
+
+  start_state = transient_indices[len(transient_indices) // 2]
+  print(f"Exact Analytical Hitting Time: {hitting_times[start_state]:.4f}")
