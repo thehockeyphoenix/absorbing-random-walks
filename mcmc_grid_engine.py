@@ -75,3 +75,6 @@ hitting_times = N.sum(axis=1)
 
   start_state = transient_indices[len(transient_indices) // 2]
   print(f"Exact Analytical Hitting Time: {hitting_times[start_state]:.4f}")
+if __name__ == "__main__":
+  avg_steps, abs_counts = simulate_absorbing_random_walk()
+  print(f"Average Hitting Time (MCMC): {avg_steps:.4f}")
