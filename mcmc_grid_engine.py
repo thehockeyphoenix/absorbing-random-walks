@@ -78,3 +78,5 @@ hitting_times = N.sum(axis=1)
 if __name__ == "__main__":
   avg_steps, abs_counts = simulate_absorbing_random_walk()
   print(f"Average Hitting Time (MCMC): {avg_steps:.4f}")
+  print(f"Absorption Distribution: {abs_counts}")
+  exact_markov_hitting_time()
