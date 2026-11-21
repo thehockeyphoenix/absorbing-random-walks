@@ -3,12 +3,8 @@ import random
 def run_random_walk(rows=5, cols=5, trials=10000):
     traps = [(0, 0), (4, 4)]
     total_steps = 0
-    def state_to_idx(r, c):
-        return r * cols + c
-        
-    def idx_to_state(idx):
-        return (idx // cols, idx % cols)
-        
+    trap_counts = {(0, 0): 0, (4, 4): 0}
+
     absorbing_indices = [state_to_idx(r, c) for r, c in absorbing_states]
     transient_indices = [i for i in range(num_states) if i not in absorbing_indices]
     
