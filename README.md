@@ -1,25 +1,16 @@
-# Absorbing Markov Chains & Monte Carlo Hitting Time Analysis
+# Absorbing Random Walks
 
-## Overview
-This repository investigates expected hitting times for symmetric random walks on $N \times N$ grids with reflecting boundaries and corner absorbing traps. We benchmark empirical Monte Carlo simulations against exact algebraic solutions derived via the Fundamental Matrix $N = (I - Q)^{-1}$.
+A simple Python simulation of a 2D random walk on a 5x5 grid with two absorbing traps at opposite corners: `(0, 0)` and `(4, 4)`.
 
-## Benchmark Results ($3 \times 3$ to $9 \times 9$ Grids)
+## How It Works
+- The walker starts at the center of the grid `(2, 2)`.
+- At each step, it moves randomly up, down, left, or right (staying inside the grid boundaries).
+- The walk ends as soon as it lands on either `(0, 0)` or `(4, 4)`.
+- The script runs 10,000 trials to estimate the average number of steps before getting trapped (Monte Carlo method).
 
-| Grid Size ($N \times N$) | Transient States ($k = N^2 - 4$) | Exact Markov Steps $N = (I - Q)^{-1}$ | Monte Carlo ($25,000$ trials) | Relative Error (%) |
-| :---: | :---: | :---: | :---: | :---: |
-| $3 \times 3$ | 5 | 4.5000 | 4.5082 | 0.182% |
-| $4 \times 4$ | 12 | 9.3333 | 9.3146 | 0.200% |
-| $5 \times 5$ | 21 | 18.3636 | 18.4112 | 0.259% |
-| $6 \times 6$ | 32 | 29.9828 | 29.9104 | 0.241% |
-| $7 \times 7$ | 45 | 46.9691 | 47.0855 | 0.248% |
-| $8 \times 8$ | 60 | 66.7029 | 66.5210 | 0.273% |
-| $9 \times 9$ | 77 | 92.7538 | 92.9412 | 0.202% |
+## Files
+- `random_walk.py`: Runs the 10,000-trial simulation and prints the average hitting time and how often each trap is reached.
 
-## Repository Structure
-- `mcmc_grid_engine.py`: Pure Python Monte Carlo simulator and Gauss-Jordan exact fundamental matrix solver.
-- `data/mcmc_vs_exact_benchmark.csv`: Raw comparative dataset across grid sizes.
-
-## Replication
+## How to Run
 ```bash
-python mcmc_grid_engine.py
-```
+python random_walk.py
