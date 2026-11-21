@@ -1,9 +1,8 @@
-import numpy as np
+import random
 
-def simulate_absorbing_random_walk(grid_size=(5, 5), absorbing_states=[(0, 0), (4, 4)], num_simulations=10000):
-    rows, cols = grid_size
-    num_states = rows * cols
-    
+def run_random_walk(rows=5, cols=5, trials=10000):
+    traps = [(0, 0), (4, 4)]
+    total_steps = 0
     def state_to_idx(r, c):
         return r * cols + c
         
