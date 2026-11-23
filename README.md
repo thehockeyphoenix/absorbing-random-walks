@@ -24,7 +24,7 @@ Each grid starts the walker at the center `(n // 2, n // 2)` with two opposite c
 | 11x11 | 121 | 265.40 |
 
 ### Key Observation
-Average hitting time grows faster than the total number of squares (n^2). Increasing the grid from 3x3 to 9x9 increases the area by 9x, while the average number of steps increases by more than 26x (matching the expected n^2 log(n) scaling behavior of 2D random walks).
+Average hitting time grows significantly faster than the total number of squares (n^2). Tripling the grid width from 3x3 to 9x9 increases the total area by 9x (from 9 to 81 squares), while the average number of steps increases by more than 26x (from 6.02 to 157.92 steps). This happens because in 2D, a random walker does not move in a straight line toward the corners—it frequently revisits squares and loops around the single-cell traps before landing directly on them.
 
 ## Next Steps
 - Test asymmetric trap placements on a 5x5 grid (`trap_placement.py`).
