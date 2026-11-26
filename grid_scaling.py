@@ -26,7 +26,7 @@ def average_hitting_time(n, trials=5000):
 
     return total_steps / trials
 
-grid_sizes = [3, 5, 7, 9, 11]
+grid_sizes = [3, 5, 7, 9, 11, 13, 15]
 
 for size in grid_sizes:
     avg = average_hitting_time(size)
