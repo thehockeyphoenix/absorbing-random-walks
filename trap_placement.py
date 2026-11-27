@@ -1,6 +1,6 @@
 import random
 
-def test_traps(trap2, trials=5000):
+def test_traps(trap2, trials=10000):
     traps = [(0, 0), trap2]
     total_steps = 0
     hits = {(0, 0): 0, trap2: 0}
@@ -26,11 +26,12 @@ def test_traps(trap2, trials=5000):
         total_steps += steps
         hits[(r, c)] += 1
 
-    avg_steps = total_steps / trials
-    trap2_pct = (hits[trap2] / trials) * 100
-    return round(avg_steps, 2), round(trap2_pct, 1)
+    avg_steps = round(total_steps / trials, 2)
+    trap2_pct = round((hits[trap2] / trials) * 100, 1)
+    return avg_steps, trap2_pct
 
-positions = [(4, 4), (3, 4), (3, 3), (2, 3), (2, 4)]
-for pos in positions:
-    steps, pct = test_traps(pos)
-    print(f"Trap 2 at {pos}: avg steps = {steps}, hits trap 2 = {pct}%")
+for r in range(5):
+    for c in range(5):
+        if (r, c) not in [(0, 0), (2, 2)]:
+            steps, pct = test_traps((r, c))
+            print(f"Trap 2 at {(r, c)}: avg steps = {steps}, hits trap 2 = {pct}%")
