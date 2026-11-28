@@ -6,12 +6,14 @@ A Python simulation project studying 2D absorbing random walks on square grids. 
 - `random_walk.py`: Simulates 10,000 walks on a 5x5 grid with traps at `(0, 0)` and `(4, 4)` and tracks average steps and trap distribution.
 - `grid_scaling.py`: Runs 5,000 trials across grid sizes from 3x3 to 15x15 to see how average hitting time grows with grid area.
 - `trap_placement.py`: Sweeps all 23 valid positions for Trap 2 on a 5x5 grid (10,000 trials each) while keeping Trap 1 fixed at `(0, 0)`.
+- `biased_walk.py`: Tests directional drift on a 5x5 grid by weighting down and right moves higher than up and left moves over 5,000 trials.
 
 ## How to Run
 ```bash
 python random_walk.py
 python grid_scaling.py
 python trap_placement.py
+python biased_walk.py
 ```
 
 ## Experiment 1: Grid Scaling Results
@@ -48,5 +50,18 @@ Starting from the center `(2, 2)`, Trap 1 stays fixed at `(0, 0)` while Trap 2 i
 4. **The `(1, 1)` chokepoint:** Even though `(1, 1)` is 2 steps from the center, it achieves the highest capture share on the grid (83.3%). To reach `(0, 0)`, a walker must pass through `(0, 1)` or `(1, 0)`, and `(1, 1)` sits directly next to both of those entry cells.
 5. **Slowest setup:** Clustering both traps in the same corner (`(0, 0)` and `(0, 1)`) produces the longest walks (~45.7 steps), since the rest of the 5x5 grid has no trap at all.
 
+## Experiment 3: Directional Bias (5x5 Grid)
+Starting from `(2, 2)` with traps at `(0, 0)` and `(4, 4)`, down and right moves are given higher selection weights than up and left moves (weight 1) over 5,000 trials:
+
+| Down/Right Weight | Move Ratio (Down/Right vs Up/Left) | Average Steps to Trap | Hits on `(4, 4)` |
+| :--- | :--- | :--- | :--- |
+| 1 (Unbiased) | 1 : 1 | 31.42 | 50.6% |
+| 2 | 2 : 1 | 15.92 | 96.7% |
+| 3 | 3 : 1 | 10.04 | 99.3% |
+| 4 | 4 : 1 | 7.90 | 99.9% |
+
+### Observation
+Giving down and right moves a 2:1 weight cuts the average hitting time almost in half (31.42 down to 15.92 steps) and pushes absorption at `(4, 4)` from 50.6% to 96.7%. Because reaching `(0, 0)` requires multiple consecutive steps against the drift, even a moderate per-step bias makes it rare for the walker to reach the opposite corner.
+
 ## Next Steps
-- Test directional bias / drift (`biased_walk.py`).
+- Verify Monte Carlo results against an exact first-principles iterative solver (`exact_solver.py`).
